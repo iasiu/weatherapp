@@ -4,6 +4,7 @@ import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
 import 'package:weatherapp/data/weather_client.dart';
 import 'package:weatherapp/data/weather_repository.dart';
+import 'package:weatherapp/env/env.dart';
 
 import 'app.dart';
 
@@ -32,9 +33,7 @@ class GlobalProviders extends StatelessWidget {
     return MultiProvider(
       providers: [
         Provider<WeatherClient>(
-          create: (_) => WeatherClient(
-            apiKey: '228600346318480f940200621232704',
-          ),
+          create: (_) => WeatherClient(apiKey: Env.weatherApiKey),
         ),
         RepositoryProvider(
           create: (context) => WeatherRepository(
