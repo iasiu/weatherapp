@@ -133,6 +133,13 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{humidity} %'**
   String home_load_successful_body_humidity(int humidity);
+
+  /// No description provided for @forecast_tile_temperature.
+  ///
+  /// In en, this message translates to:
+  /// **'{minTemperature}-{maxTemperature} °C'**
+  String forecast_tile_temperature(
+      double minTemperature, double maxTemperature);
 }
 
 class _AppLocalizationsDelegate

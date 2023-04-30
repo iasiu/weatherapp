@@ -38,15 +38,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     final query = event.query;
 
     try {
-      final weather = await _repository.getForecast(query: query);
-
-      emit(
-        HomeState.loadSuccessful(
-          currentWeather: weather.current,
-          location: weather.location,
-          updated: DateTime.now(),
-        ),
-      );
+      await _load(emit, query: query);
     } catch (e, st) {
       _logger.warning('failed _onSearch for event: $event', e, st);
       emit(HomeState.loadFailure(query: query));
@@ -66,20 +58,39 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             '${loadSuccess.location.name}, ${loadSuccess.location.country}';
 
         try {
-          final weather = await _repository.getForecast(query: query);
-
-          emit(
-            HomeState.loadSuccessful(
-              currentWeather: weather.current,
-              location: weather.location,
-              updated: DateTime.now(),
-            ),
-          );
+          await _load(emit, query: query);
         } catch (e, st) {
           _logger.warning('failed _onRefresh for event: $event', e, st);
           emit(HomeState.loadFailure(query: query));
         }
       },
+    );
+  }
+
+  Future<void> _load(Emitter<HomeState> emit, {required String query}) async {
+    final weather = await _repository.getForecast(query: query);
+
+    final now = DateTime.now();
+    final hours = weather.forecast.forecastDays
+        .expand(
+          (e) => e.hours,
+        )
+        .where(
+          (e) =>
+              e.dateTime.difference(now) < const Duration(hours: 12) &&
+              e.dateTime.difference(now) > Duration.zero,
+        )
+        .toList();
+
+    emit(
+      HomeState.loadSuccessful(
+        location: weather.location,
+        currentWeather: weather.current,
+        forecastToday: weather.forecast.forecastDays.first,
+        forecastTomorrow: weather.forecast.forecastDays.last,
+        hours: hours,
+        updated: now,
+      ),
     );
   }
 }
@@ -91,8 +102,11 @@ class HomeState with _$HomeState {
   const factory HomeState.loadInProgress() = HomeLoadInProgress;
 
   const factory HomeState.loadSuccessful({
-    required CurrentWeather currentWeather,
     required Location location,
+    required CurrentWeather currentWeather,
+    required ForecastWeatherDayDTO forecastToday,
+    required ForecastWeatherDayDTO forecastTomorrow,
+    required List<ForecastWeatherHour> hours,
     required DateTime updated,
   }) = HomeLoadSuccessful;
 

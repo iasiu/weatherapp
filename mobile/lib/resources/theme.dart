@@ -17,21 +17,6 @@ class AppTheme {
     );
   }
 
-  static ThemeData dark(BuildContext context) {
-    return _build(
-      context: context,
-      primary: AppColors.of(context).primary,
-      secondary: AppColors.of(context).secondary,
-      lighterText: AppColors.of(context).textLight,
-      darkerText: AppColors.of(context).text,
-      surface: AppColors.of(context).white,
-      background: AppColors.of(context).background,
-      error: AppColors.of(context).accent,
-      onError: AppColors.of(context).error,
-      brightness: Brightness.dark,
-    );
-  }
-
   static ThemeData _build({
     required BuildContext context,
     required Brightness brightness,

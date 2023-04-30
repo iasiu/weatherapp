@@ -21,7 +21,12 @@ mixin _$HomeState {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function(
-            CurrentWeather currentWeather, Location location, DateTime updated)
+            Location location,
+            CurrentWeather currentWeather,
+            ForecastWeatherDayDTO forecastToday,
+            ForecastWeatherDayDTO forecastTomorrow,
+            List<ForecastWeatherHour> hours,
+            DateTime updated)
         loadSuccessful,
     required TResult Function(String query) loadFailure,
   }) =>
@@ -31,7 +36,12 @@ mixin _$HomeState {
     TResult? Function()? initial,
     TResult? Function()? loadInProgress,
     TResult? Function(
-            CurrentWeather currentWeather, Location location, DateTime updated)?
+            Location location,
+            CurrentWeather currentWeather,
+            ForecastWeatherDayDTO forecastToday,
+            ForecastWeatherDayDTO forecastTomorrow,
+            List<ForecastWeatherHour> hours,
+            DateTime updated)?
         loadSuccessful,
     TResult? Function(String query)? loadFailure,
   }) =>
@@ -41,7 +51,12 @@ mixin _$HomeState {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function(
-            CurrentWeather currentWeather, Location location, DateTime updated)?
+            Location location,
+            CurrentWeather currentWeather,
+            ForecastWeatherDayDTO forecastToday,
+            ForecastWeatherDayDTO forecastTomorrow,
+            List<ForecastWeatherHour> hours,
+            DateTime updated)?
         loadSuccessful,
     TResult Function(String query)? loadFailure,
     required TResult orElse(),
@@ -132,7 +147,12 @@ class _$HomeInitial implements HomeInitial {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function(
-            CurrentWeather currentWeather, Location location, DateTime updated)
+            Location location,
+            CurrentWeather currentWeather,
+            ForecastWeatherDayDTO forecastToday,
+            ForecastWeatherDayDTO forecastTomorrow,
+            List<ForecastWeatherHour> hours,
+            DateTime updated)
         loadSuccessful,
     required TResult Function(String query) loadFailure,
   }) {
@@ -145,7 +165,12 @@ class _$HomeInitial implements HomeInitial {
     TResult? Function()? initial,
     TResult? Function()? loadInProgress,
     TResult? Function(
-            CurrentWeather currentWeather, Location location, DateTime updated)?
+            Location location,
+            CurrentWeather currentWeather,
+            ForecastWeatherDayDTO forecastToday,
+            ForecastWeatherDayDTO forecastTomorrow,
+            List<ForecastWeatherHour> hours,
+            DateTime updated)?
         loadSuccessful,
     TResult? Function(String query)? loadFailure,
   }) {
@@ -158,7 +183,12 @@ class _$HomeInitial implements HomeInitial {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function(
-            CurrentWeather currentWeather, Location location, DateTime updated)?
+            Location location,
+            CurrentWeather currentWeather,
+            ForecastWeatherDayDTO forecastToday,
+            ForecastWeatherDayDTO forecastTomorrow,
+            List<ForecastWeatherHour> hours,
+            DateTime updated)?
         loadSuccessful,
     TResult Function(String query)? loadFailure,
     required TResult orElse(),
@@ -252,7 +282,12 @@ class _$HomeLoadInProgress implements HomeLoadInProgress {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function(
-            CurrentWeather currentWeather, Location location, DateTime updated)
+            Location location,
+            CurrentWeather currentWeather,
+            ForecastWeatherDayDTO forecastToday,
+            ForecastWeatherDayDTO forecastTomorrow,
+            List<ForecastWeatherHour> hours,
+            DateTime updated)
         loadSuccessful,
     required TResult Function(String query) loadFailure,
   }) {
@@ -265,7 +300,12 @@ class _$HomeLoadInProgress implements HomeLoadInProgress {
     TResult? Function()? initial,
     TResult? Function()? loadInProgress,
     TResult? Function(
-            CurrentWeather currentWeather, Location location, DateTime updated)?
+            Location location,
+            CurrentWeather currentWeather,
+            ForecastWeatherDayDTO forecastToday,
+            ForecastWeatherDayDTO forecastTomorrow,
+            List<ForecastWeatherHour> hours,
+            DateTime updated)?
         loadSuccessful,
     TResult? Function(String query)? loadFailure,
   }) {
@@ -278,7 +318,12 @@ class _$HomeLoadInProgress implements HomeLoadInProgress {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function(
-            CurrentWeather currentWeather, Location location, DateTime updated)?
+            Location location,
+            CurrentWeather currentWeather,
+            ForecastWeatherDayDTO forecastToday,
+            ForecastWeatherDayDTO forecastTomorrow,
+            List<ForecastWeatherHour> hours,
+            DateTime updated)?
         loadSuccessful,
     TResult Function(String query)? loadFailure,
     required TResult orElse(),
@@ -338,10 +383,17 @@ abstract class _$$HomeLoadSuccessfulCopyWith<$Res> {
       __$$HomeLoadSuccessfulCopyWithImpl<$Res>;
   @useResult
   $Res call(
-      {CurrentWeather currentWeather, Location location, DateTime updated});
+      {Location location,
+      CurrentWeather currentWeather,
+      ForecastWeatherDayDTO forecastToday,
+      ForecastWeatherDayDTO forecastTomorrow,
+      List<ForecastWeatherHour> hours,
+      DateTime updated});
 
-  $CurrentWeatherCopyWith<$Res> get currentWeather;
   $LocationCopyWith<$Res> get location;
+  $CurrentWeatherCopyWith<$Res> get currentWeather;
+  $ForecastWeatherDayDTOCopyWith<$Res> get forecastToday;
+  $ForecastWeatherDayDTOCopyWith<$Res> get forecastTomorrow;
 }
 
 /// @nodoc
@@ -355,24 +407,47 @@ class __$$HomeLoadSuccessfulCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? currentWeather = null,
     Object? location = null,
+    Object? currentWeather = null,
+    Object? forecastToday = null,
+    Object? forecastTomorrow = null,
+    Object? hours = null,
     Object? updated = null,
   }) {
     return _then(_$HomeLoadSuccessful(
-      currentWeather: null == currentWeather
-          ? _value.currentWeather
-          : currentWeather // ignore: cast_nullable_to_non_nullable
-              as CurrentWeather,
       location: null == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as Location,
+      currentWeather: null == currentWeather
+          ? _value.currentWeather
+          : currentWeather // ignore: cast_nullable_to_non_nullable
+              as CurrentWeather,
+      forecastToday: null == forecastToday
+          ? _value.forecastToday
+          : forecastToday // ignore: cast_nullable_to_non_nullable
+              as ForecastWeatherDayDTO,
+      forecastTomorrow: null == forecastTomorrow
+          ? _value.forecastTomorrow
+          : forecastTomorrow // ignore: cast_nullable_to_non_nullable
+              as ForecastWeatherDayDTO,
+      hours: null == hours
+          ? _value._hours
+          : hours // ignore: cast_nullable_to_non_nullable
+              as List<ForecastWeatherHour>,
       updated: null == updated
           ? _value.updated
           : updated // ignore: cast_nullable_to_non_nullable
               as DateTime,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $LocationCopyWith<$Res> get location {
+    return $LocationCopyWith<$Res>(_value.location, (value) {
+      return _then(_value.copyWith(location: value));
+    });
   }
 
   @override
@@ -385,9 +460,18 @@ class __$$HomeLoadSuccessfulCopyWithImpl<$Res>
 
   @override
   @pragma('vm:prefer-inline')
-  $LocationCopyWith<$Res> get location {
-    return $LocationCopyWith<$Res>(_value.location, (value) {
-      return _then(_value.copyWith(location: value));
+  $ForecastWeatherDayDTOCopyWith<$Res> get forecastToday {
+    return $ForecastWeatherDayDTOCopyWith<$Res>(_value.forecastToday, (value) {
+      return _then(_value.copyWith(forecastToday: value));
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ForecastWeatherDayDTOCopyWith<$Res> get forecastTomorrow {
+    return $ForecastWeatherDayDTOCopyWith<$Res>(_value.forecastTomorrow,
+        (value) {
+      return _then(_value.copyWith(forecastTomorrow: value));
     });
   }
 }
@@ -396,20 +480,36 @@ class __$$HomeLoadSuccessfulCopyWithImpl<$Res>
 
 class _$HomeLoadSuccessful implements HomeLoadSuccessful {
   const _$HomeLoadSuccessful(
-      {required this.currentWeather,
-      required this.location,
-      required this.updated});
+      {required this.location,
+      required this.currentWeather,
+      required this.forecastToday,
+      required this.forecastTomorrow,
+      required final List<ForecastWeatherHour> hours,
+      required this.updated})
+      : _hours = hours;
 
+  @override
+  final Location location;
   @override
   final CurrentWeather currentWeather;
   @override
-  final Location location;
+  final ForecastWeatherDayDTO forecastToday;
+  @override
+  final ForecastWeatherDayDTO forecastTomorrow;
+  final List<ForecastWeatherHour> _hours;
+  @override
+  List<ForecastWeatherHour> get hours {
+    if (_hours is EqualUnmodifiableListView) return _hours;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_hours);
+  }
+
   @override
   final DateTime updated;
 
   @override
   String toString() {
-    return 'HomeState.loadSuccessful(currentWeather: $currentWeather, location: $location, updated: $updated)';
+    return 'HomeState.loadSuccessful(location: $location, currentWeather: $currentWeather, forecastToday: $forecastToday, forecastTomorrow: $forecastTomorrow, hours: $hours, updated: $updated)';
   }
 
   @override
@@ -417,16 +517,27 @@ class _$HomeLoadSuccessful implements HomeLoadSuccessful {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$HomeLoadSuccessful &&
-            (identical(other.currentWeather, currentWeather) ||
-                other.currentWeather == currentWeather) &&
             (identical(other.location, location) ||
                 other.location == location) &&
+            (identical(other.currentWeather, currentWeather) ||
+                other.currentWeather == currentWeather) &&
+            (identical(other.forecastToday, forecastToday) ||
+                other.forecastToday == forecastToday) &&
+            (identical(other.forecastTomorrow, forecastTomorrow) ||
+                other.forecastTomorrow == forecastTomorrow) &&
+            const DeepCollectionEquality().equals(other._hours, _hours) &&
             (identical(other.updated, updated) || other.updated == updated));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, currentWeather, location, updated);
+  int get hashCode => Object.hash(
+      runtimeType,
+      location,
+      currentWeather,
+      forecastToday,
+      forecastTomorrow,
+      const DeepCollectionEquality().hash(_hours),
+      updated);
 
   @JsonKey(ignore: true)
   @override
@@ -441,11 +552,17 @@ class _$HomeLoadSuccessful implements HomeLoadSuccessful {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function(
-            CurrentWeather currentWeather, Location location, DateTime updated)
+            Location location,
+            CurrentWeather currentWeather,
+            ForecastWeatherDayDTO forecastToday,
+            ForecastWeatherDayDTO forecastTomorrow,
+            List<ForecastWeatherHour> hours,
+            DateTime updated)
         loadSuccessful,
     required TResult Function(String query) loadFailure,
   }) {
-    return loadSuccessful(currentWeather, location, updated);
+    return loadSuccessful(location, currentWeather, forecastToday,
+        forecastTomorrow, hours, updated);
   }
 
   @override
@@ -454,11 +571,17 @@ class _$HomeLoadSuccessful implements HomeLoadSuccessful {
     TResult? Function()? initial,
     TResult? Function()? loadInProgress,
     TResult? Function(
-            CurrentWeather currentWeather, Location location, DateTime updated)?
+            Location location,
+            CurrentWeather currentWeather,
+            ForecastWeatherDayDTO forecastToday,
+            ForecastWeatherDayDTO forecastTomorrow,
+            List<ForecastWeatherHour> hours,
+            DateTime updated)?
         loadSuccessful,
     TResult? Function(String query)? loadFailure,
   }) {
-    return loadSuccessful?.call(currentWeather, location, updated);
+    return loadSuccessful?.call(location, currentWeather, forecastToday,
+        forecastTomorrow, hours, updated);
   }
 
   @override
@@ -467,13 +590,19 @@ class _$HomeLoadSuccessful implements HomeLoadSuccessful {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function(
-            CurrentWeather currentWeather, Location location, DateTime updated)?
+            Location location,
+            CurrentWeather currentWeather,
+            ForecastWeatherDayDTO forecastToday,
+            ForecastWeatherDayDTO forecastTomorrow,
+            List<ForecastWeatherHour> hours,
+            DateTime updated)?
         loadSuccessful,
     TResult Function(String query)? loadFailure,
     required TResult orElse(),
   }) {
     if (loadSuccessful != null) {
-      return loadSuccessful(currentWeather, location, updated);
+      return loadSuccessful(location, currentWeather, forecastToday,
+          forecastTomorrow, hours, updated);
     }
     return orElse();
   }
@@ -518,12 +647,18 @@ class _$HomeLoadSuccessful implements HomeLoadSuccessful {
 
 abstract class HomeLoadSuccessful implements HomeState {
   const factory HomeLoadSuccessful(
-      {required final CurrentWeather currentWeather,
-      required final Location location,
+      {required final Location location,
+      required final CurrentWeather currentWeather,
+      required final ForecastWeatherDayDTO forecastToday,
+      required final ForecastWeatherDayDTO forecastTomorrow,
+      required final List<ForecastWeatherHour> hours,
       required final DateTime updated}) = _$HomeLoadSuccessful;
 
-  CurrentWeather get currentWeather;
   Location get location;
+  CurrentWeather get currentWeather;
+  ForecastWeatherDayDTO get forecastToday;
+  ForecastWeatherDayDTO get forecastTomorrow;
+  List<ForecastWeatherHour> get hours;
   DateTime get updated;
   @JsonKey(ignore: true)
   _$$HomeLoadSuccessfulCopyWith<_$HomeLoadSuccessful> get copyWith =>
@@ -597,7 +732,12 @@ class _$HomeLoadFailure implements HomeLoadFailure {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function(
-            CurrentWeather currentWeather, Location location, DateTime updated)
+            Location location,
+            CurrentWeather currentWeather,
+            ForecastWeatherDayDTO forecastToday,
+            ForecastWeatherDayDTO forecastTomorrow,
+            List<ForecastWeatherHour> hours,
+            DateTime updated)
         loadSuccessful,
     required TResult Function(String query) loadFailure,
   }) {
@@ -610,7 +750,12 @@ class _$HomeLoadFailure implements HomeLoadFailure {
     TResult? Function()? initial,
     TResult? Function()? loadInProgress,
     TResult? Function(
-            CurrentWeather currentWeather, Location location, DateTime updated)?
+            Location location,
+            CurrentWeather currentWeather,
+            ForecastWeatherDayDTO forecastToday,
+            ForecastWeatherDayDTO forecastTomorrow,
+            List<ForecastWeatherHour> hours,
+            DateTime updated)?
         loadSuccessful,
     TResult? Function(String query)? loadFailure,
   }) {
@@ -623,7 +768,12 @@ class _$HomeLoadFailure implements HomeLoadFailure {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function(
-            CurrentWeather currentWeather, Location location, DateTime updated)?
+            Location location,
+            CurrentWeather currentWeather,
+            ForecastWeatherDayDTO forecastToday,
+            ForecastWeatherDayDTO forecastTomorrow,
+            List<ForecastWeatherHour> hours,
+            DateTime updated)?
         loadSuccessful,
     TResult Function(String query)? loadFailure,
     required TResult orElse(),

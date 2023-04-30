@@ -36,4 +36,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String home_load_successful_body_humidity(int humidity) {
     return '$humidity %';
   }
+
+  @override
+  String forecast_tile_temperature(
+      double minTemperature, double maxTemperature) {
+    return '$minTemperature-$maxTemperature °C';
+  }
 }

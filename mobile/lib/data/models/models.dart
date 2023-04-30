@@ -56,6 +56,7 @@ class ForecastWeatherHour with _$ForecastWeatherHour {
         required DateTime dateTime,
     @JsonKey(name: 'temp_c') required double tempC,
     @JsonKey(name: 'cloud') required double cloudCoverage,
+    @JsonKey(name: 'wind_mph') required double wind,
   }) = _ForecastWeatherHour;
 
   factory ForecastWeatherHour.fromJson(Map<String, dynamic> json) =>

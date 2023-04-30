@@ -597,6 +597,8 @@ mixin _$ForecastWeatherHour {
   double get tempC => throw _privateConstructorUsedError;
   @JsonKey(name: 'cloud')
   double get cloudCoverage => throw _privateConstructorUsedError;
+  @JsonKey(name: 'wind_mph')
+  double get wind => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -616,7 +618,9 @@ abstract class $ForecastWeatherHourCopyWith<$Res> {
       @JsonKey(name: 'temp_c')
           double tempC,
       @JsonKey(name: 'cloud')
-          double cloudCoverage});
+          double cloudCoverage,
+      @JsonKey(name: 'wind_mph')
+          double wind});
 }
 
 /// @nodoc
@@ -635,6 +639,7 @@ class _$ForecastWeatherHourCopyWithImpl<$Res, $Val extends ForecastWeatherHour>
     Object? dateTime = null,
     Object? tempC = null,
     Object? cloudCoverage = null,
+    Object? wind = null,
   }) {
     return _then(_value.copyWith(
       dateTime: null == dateTime
@@ -648,6 +653,10 @@ class _$ForecastWeatherHourCopyWithImpl<$Res, $Val extends ForecastWeatherHour>
       cloudCoverage: null == cloudCoverage
           ? _value.cloudCoverage
           : cloudCoverage // ignore: cast_nullable_to_non_nullable
+              as double,
+      wind: null == wind
+          ? _value.wind
+          : wind // ignore: cast_nullable_to_non_nullable
               as double,
     ) as $Val);
   }
@@ -667,7 +676,9 @@ abstract class _$$_ForecastWeatherHourCopyWith<$Res>
       @JsonKey(name: 'temp_c')
           double tempC,
       @JsonKey(name: 'cloud')
-          double cloudCoverage});
+          double cloudCoverage,
+      @JsonKey(name: 'wind_mph')
+          double wind});
 }
 
 /// @nodoc
@@ -684,6 +695,7 @@ class __$$_ForecastWeatherHourCopyWithImpl<$Res>
     Object? dateTime = null,
     Object? tempC = null,
     Object? cloudCoverage = null,
+    Object? wind = null,
   }) {
     return _then(_$_ForecastWeatherHour(
       dateTime: null == dateTime
@@ -698,6 +710,10 @@ class __$$_ForecastWeatherHourCopyWithImpl<$Res>
           ? _value.cloudCoverage
           : cloudCoverage // ignore: cast_nullable_to_non_nullable
               as double,
+      wind: null == wind
+          ? _value.wind
+          : wind // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -711,7 +727,9 @@ class _$_ForecastWeatherHour implements _ForecastWeatherHour {
       @JsonKey(name: 'temp_c')
           required this.tempC,
       @JsonKey(name: 'cloud')
-          required this.cloudCoverage});
+          required this.cloudCoverage,
+      @JsonKey(name: 'wind_mph')
+          required this.wind});
 
   factory _$_ForecastWeatherHour.fromJson(Map<String, dynamic> json) =>
       _$$_ForecastWeatherHourFromJson(json);
@@ -725,10 +743,13 @@ class _$_ForecastWeatherHour implements _ForecastWeatherHour {
   @override
   @JsonKey(name: 'cloud')
   final double cloudCoverage;
+  @override
+  @JsonKey(name: 'wind_mph')
+  final double wind;
 
   @override
   String toString() {
-    return 'ForecastWeatherHour(dateTime: $dateTime, tempC: $tempC, cloudCoverage: $cloudCoverage)';
+    return 'ForecastWeatherHour(dateTime: $dateTime, tempC: $tempC, cloudCoverage: $cloudCoverage, wind: $wind)';
   }
 
   @override
@@ -740,12 +761,14 @@ class _$_ForecastWeatherHour implements _ForecastWeatherHour {
                 other.dateTime == dateTime) &&
             (identical(other.tempC, tempC) || other.tempC == tempC) &&
             (identical(other.cloudCoverage, cloudCoverage) ||
-                other.cloudCoverage == cloudCoverage));
+                other.cloudCoverage == cloudCoverage) &&
+            (identical(other.wind, wind) || other.wind == wind));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, dateTime, tempC, cloudCoverage);
+  int get hashCode =>
+      Object.hash(runtimeType, dateTime, tempC, cloudCoverage, wind);
 
   @JsonKey(ignore: true)
   @override
@@ -769,7 +792,9 @@ abstract class _ForecastWeatherHour implements ForecastWeatherHour {
       @JsonKey(name: 'temp_c')
           required final double tempC,
       @JsonKey(name: 'cloud')
-          required final double cloudCoverage}) = _$_ForecastWeatherHour;
+          required final double cloudCoverage,
+      @JsonKey(name: 'wind_mph')
+          required final double wind}) = _$_ForecastWeatherHour;
 
   factory _ForecastWeatherHour.fromJson(Map<String, dynamic> json) =
       _$_ForecastWeatherHour.fromJson;
@@ -783,6 +808,9 @@ abstract class _ForecastWeatherHour implements ForecastWeatherHour {
   @override
   @JsonKey(name: 'cloud')
   double get cloudCoverage;
+  @override
+  @JsonKey(name: 'wind_mph')
+  double get wind;
   @override
   @JsonKey(ignore: true)
   _$$_ForecastWeatherHourCopyWith<_$_ForecastWeatherHour> get copyWith =>

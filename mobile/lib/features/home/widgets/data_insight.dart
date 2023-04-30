@@ -23,20 +23,23 @@ class DataInsight extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Icon(
-          icon,
-          color: context.colors.primary,
-          size: 32,
-        ),
-        const SizedBox(width: 8),
-        AppText(
-          data,
-          style: context.textTheme.bodyLarge,
-          fontWeight: FontWeight.bold,
-        )
-      ],
+    return FittedBox(
+      fit: BoxFit.scaleDown,
+      child: Row(
+        children: [
+          Icon(
+            icon,
+            color: context.colors.primary,
+            size: 32,
+          ),
+          const SizedBox(width: 4),
+          AppText(
+            data,
+            style: context.textTheme.bodyLarge,
+            fontWeight: FontWeight.bold,
+          )
+        ],
+      ),
     );
   }
 }
