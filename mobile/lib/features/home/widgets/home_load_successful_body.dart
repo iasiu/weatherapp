@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weatherapp/extensions/extensions.dart';
 import 'package:weatherapp/features/home/bloc/home_bloc.dart';
 import 'package:weatherapp/features/home/widgets/data_insight.dart';
-import 'package:weatherapp/widgets/network_image.dart';
 import 'package:weatherapp/widgets/widgets.dart';
 
 class HomeLoadSuccessfulBody extends StatelessWidget {
@@ -15,6 +14,7 @@ class HomeLoadSuccessfulBody extends StatelessWidget {
   final HomeLoadSuccessful loadSuccessful;
 
   Future<void> onRefresh(BuildContext context) async {
+    // wait until first state is emitted
     final block = context.read<HomeBloc>().stream.first;
     context.read<HomeBloc>().add(const HomeEvent.refresh());
     await block;

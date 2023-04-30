@@ -32,6 +32,11 @@ jobs:
 
       - name: flutter pub get
         run: flutter pub get
+        
+      - name: build_runner
+        env: 
+          WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
+        run: flutter pub run build_runner build --delete-conflicting-outputs
 
       - name: flutter analyze
         run: flutter analyze
