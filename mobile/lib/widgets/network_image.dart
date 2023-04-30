@@ -29,7 +29,7 @@ class AppNetworkImage extends StatelessWidget {
               url,
               fit: fit,
               placeholderBuilder: (_) => Shimmer(
-                color: context.colors.primary.withOpacity(0.2),
+                color: context.colors.textLight.withOpacity(0.5),
                 child: const SizedBox.expand(),
               ),
             )
@@ -37,7 +37,7 @@ class AppNetworkImage extends StatelessWidget {
               imageUrl: url,
               fit: fit,
               placeholder: (_, __) => Shimmer(
-                color: context.colors.primary.withOpacity(0.2),
+                color: context.colors.textLight.withOpacity(0.5),
                 child: const SizedBox.expand(),
               ),
               errorWidget: (_, __, dynamic ___) => Container(
