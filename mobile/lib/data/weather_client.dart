@@ -61,14 +61,13 @@ class WeatherClient {
   @useResult
   Future<Map<String, dynamic>> getForecast({
     required String query,
-    int days = 2,
   }) async {
     final uri = Uri.https(
       baseUri.authority,
       WeatherClientPath.forecast.getPath(),
       <String, dynamic>{
         ...baseUri.queryParameters,
-        'days': days.toString(),
+        'days': '2',
         'q': query,
       },
     );

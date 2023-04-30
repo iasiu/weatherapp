@@ -12,6 +12,7 @@ dependencies:
   cached_network_image: ^3.2.3
   collection: ^1.17.0
   envied: ^0.3.0
+  fl_chart: ^0.62.0
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.2

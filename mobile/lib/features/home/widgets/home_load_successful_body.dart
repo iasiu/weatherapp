@@ -1,8 +1,11 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weatherapp/extensions/extensions.dart';
 import 'package:weatherapp/features/home/bloc/home_bloc.dart';
 import 'package:weatherapp/features/home/widgets/data_insight.dart';
+import 'package:weatherapp/features/home/widgets/forecast_tile.dart';
+import 'package:weatherapp/features/home/widgets/temperature_chart.dart';
 import 'package:weatherapp/widgets/widgets.dart';
 
 class HomeLoadSuccessfulBody extends StatelessWidget {
@@ -29,6 +32,9 @@ class HomeLoadSuccessfulBody extends StatelessWidget {
     final clouds = currentWeather.cloudCoverage;
     final humidity = currentWeather.humidity;
     final condition = currentWeather.condition;
+    final forecastToday = loadSuccessful.forecastToday;
+    final forecastTomorrow = loadSuccessful.forecastTomorrow;
+    final hours = loadSuccessful.hours;
 
     return RefreshIndicator(
       onRefresh: () => onRefresh(context),
@@ -79,7 +85,7 @@ class HomeLoadSuccessfulBody extends StatelessWidget {
                   ),
                   DataInsight(
                     data: context.l10n.home_load_successful_body_clouds(clouds),
-                    icon: Icons.cloud,
+                    icon: Icons.cloud_outlined,
                   ),
                   DataInsight(
                     data: context.l10n.home_load_successful_body_humidity(
@@ -90,13 +96,8 @@ class HomeLoadSuccessfulBody extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 16),
-              ListTile(
-                tileColor: context.colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 16),
-                title: RichText(
+              AppTile(
+                child: RichText(
                   text: TextSpan(
                     children: [
                       WidgetSpan(
@@ -119,6 +120,20 @@ class HomeLoadSuccessfulBody extends StatelessWidget {
                   ),
                 ),
               ),
+              const SizedBox(height: 24),
+              AppTile(
+                child: TemperatureChart(
+                  color: context.colors.secondary,
+                  maxY: hours.map((e) => e.tempC).max + 1,
+                  minY: hours.map((e) => e.tempC).min - 1,
+                  hours: hours,
+                ),
+              ),
+              const SizedBox(height: 24),
+              ForecastTile(forecast: forecastToday),
+              const SizedBox(height: 24),
+              ForecastTile(forecast: forecastTomorrow),
+              const SizedBox(height: 40),
             ],
           ),
         ),

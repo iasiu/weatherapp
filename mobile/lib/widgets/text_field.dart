@@ -39,6 +39,8 @@ class AppTextField extends StatelessWidget {
       style: context.textTheme.titleLarge,
       decoration: InputDecoration(
         hintText: hintText,
+        filled: true,
+        fillColor: context.colors.textLight.withOpacity(0.2),
         hintStyle: context.textTheme.titleMedium!.copyWith(
           color: context.colors.textLight,
         ),
@@ -51,26 +53,26 @@ class AppTextField extends StatelessWidget {
           horizontal: 12,
         ),
         errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
           borderSide: BorderSide(
             color: context.colors.error,
             width: 2,
           ),
         ),
         focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
           borderSide: BorderSide(
             color: context.colors.error,
             width: 2,
           ),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: context.colors.text,
-          ),
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide.none,
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: context.colors.text,
-          ),
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide.none,
         ),
         suffixIcon: trailling,
       ),

@@ -51,5 +51,16 @@
             "type": "int"
           }
       }
+    },
+    "forecast_tile_temperature": "{minTemperature}-{maxTemperature} °C",
+    "@forecast_tile_temperature": {
+        "placeholders": {
+          "minTemperature": {
+            "type": "double"
+          },
+          "maxTemperature": {
+            "type": "double"
+          }
+      }
     }
 }

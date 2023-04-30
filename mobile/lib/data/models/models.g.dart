@@ -56,6 +56,7 @@ _$_ForecastWeatherHour _$$_ForecastWeatherHourFromJson(
       dateTime: dateTimefromJson(json['time_epoch'] as int),
       tempC: (json['temp_c'] as num).toDouble(),
       cloudCoverage: (json['cloud'] as num).toDouble(),
+      wind: (json['wind_mph'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$$_ForecastWeatherHourToJson(
@@ -64,6 +65,7 @@ Map<String, dynamic> _$$_ForecastWeatherHourToJson(
       'time_epoch': instance.dateTime.toIso8601String(),
       'temp_c': instance.tempC,
       'cloud': instance.cloudCoverage,
+      'wind_mph': instance.wind,
     };
 
 _$_ForecastWeatherDay _$$_ForecastWeatherDayFromJson(
