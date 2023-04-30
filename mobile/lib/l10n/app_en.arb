@@ -1,0 +1,55 @@
+{
+    "@@locale": "en",
+    "home_screen_search_for_location": "Search for location",
+    "home_screen_could_not_load": "Could not load results for \"{query}\" please try again",
+    "@home_screen_could_not_load" : {
+      "placeholders": {
+          "query": {
+            "type": "String"
+          }
+      }
+    },
+    "home_load_successful_body_location": "{name}, {country}",
+    "@home_load_successful_body_location": {
+        "placeholders": {
+          "name": {
+            "type": "String"
+          },
+          "country": {
+            "type": "String"
+          }
+      }
+    },
+    "home_load_successful_body_temperature": "{temperature}°C",
+    "@home_load_successful_body_temperature": {
+        "placeholders": {
+          "temperature": {
+            "type": "double"
+          }
+      }
+    },
+    "home_load_successful_body_wind": "{wind} km/h",
+    "@home_load_successful_body_wind": {
+        "placeholders": {
+          "wind": {
+            "type": "double"
+          }
+      }
+    },
+    "home_load_successful_body_clouds": "{clouds} %",
+    "@home_load_successful_body_clouds": {
+        "placeholders": {
+          "clouds": {
+            "type": "int"
+          }
+      }
+    },
+    "home_load_successful_body_humidity": "{humidity} %",
+    "@home_load_successful_body_humidity": {
+        "placeholders": {
+          "humidity": {
+            "type": "int"
+          }
+      }
+    }
+}
