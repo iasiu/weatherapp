@@ -25,3 +25,9 @@ The assignment is to create a (simple) weather app using the following free API:
 
 ### Visual inspiration
 I loosely followed design created by Monty Hayton - https://dribbble.com/shots/9245257-Weather-App-Forecast
+
+### Screenshots
+
+<img src="images/home_screen_small.png" alt="Home screen small" width="306" height="578">
+
+<img src="images/home_screen_big.png" alt="Home screen big" width="306" height="578">
