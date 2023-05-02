@@ -7,11 +7,11 @@ class WeatherRepository {
 
   final WeatherClient _client;
 
-  // Future<CurrentWeatherDTO> getCurrent({required String query}) async {
-  //   final json = await _client.getCurrent(query: query);
+  Future<CurrentWeatherDTO> getCurrent({required String query}) async {
+    final json = await _client.getCurrent(query: query);
 
-  //   return CurrentWeatherDTO.fromJson(json);
-  // }
+    return CurrentWeatherDTO.fromJson(json);
+  }
 
   Future<WeatherDTO> getForecast({required String query}) async {
     final json = await _client.getForecast(query: query);

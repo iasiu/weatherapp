@@ -4,6 +4,7 @@ import 'package:leancode_hooks/leancode_hooks.dart';
 import 'package:weatherapp/extensions/extensions.dart';
 import 'package:weatherapp/features/home/bloc/home_bloc.dart';
 import 'package:weatherapp/features/home/widgets/home_load_successful_body.dart';
+import 'package:weatherapp/utils/date_time_provider.dart';
 import 'package:weatherapp/widgets/widgets.dart';
 
 class HomeScreen extends HookWidget {
@@ -38,6 +39,7 @@ class HomeScreen extends HookWidget {
     return BlocProvider<HomeBloc>(
       create: (context) => HomeBloc(
         weatherRepository: RepositoryProvider.of(context),
+        dateTimeProvider: DateTimeProvider(),
       ),
       child: Builder(
         builder: (context) {

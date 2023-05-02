@@ -4,12 +4,16 @@ import 'package:logging/logging.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:weatherapp/data/models/models.dart';
 import 'package:weatherapp/data/weather_repository.dart';
+import 'package:weatherapp/utils/date_time_provider.dart';
 
 part 'home_bloc.freezed.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  HomeBloc({required WeatherRepository weatherRepository})
-      : _repository = weatherRepository,
+  HomeBloc({
+    required WeatherRepository weatherRepository,
+    required DateTimeProvider dateTimeProvider,
+  })  : _repository = weatherRepository,
+        _dateTime = dateTimeProvider,
         super(const HomeState.initial()) {
     on<HomeSearch>(
       _onSearch,
@@ -27,6 +31,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   static const _throttleDuration = Duration(milliseconds: 200);
 
   final WeatherRepository _repository;
+  final DateTimeProvider _dateTime;
+
   final _logger = Logger('HomeBloc');
 
   Future<void> _onSearch(
@@ -70,17 +76,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   Future<void> _load(Emitter<HomeState> emit, {required String query}) async {
     final weather = await _repository.getForecast(query: query);
 
-    final now = DateTime.now();
-    final hours = weather.forecast.forecastDays
-        .expand(
-          (e) => e.hours,
-        )
-        .where(
-          (e) =>
-              e.dateTime.difference(now) < const Duration(hours: 12) &&
-              e.dateTime.difference(now) > Duration.zero,
-        )
-        .toList();
+    final now = _dateTime.now;
+    final hours = _getNext12Hours(
+      now: now,
+      days: weather.forecast.forecastDays,
+    );
 
     emit(
       HomeState.loadSuccessful(
@@ -93,6 +93,21 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       ),
     );
   }
+
+  List<ForecastWeatherHour> _getNext12Hours({
+    required DateTime now,
+    required List<ForecastWeatherDayDTO> days,
+  }) =>
+      days
+          .expand(
+            (e) => e.hours,
+          )
+          .where(
+            (e) =>
+                e.dateTime.difference(now) < const Duration(hours: 12) &&
+                e.dateTime.difference(now) > Duration.zero,
+          )
+          .toList();
 }
 
 @freezed
