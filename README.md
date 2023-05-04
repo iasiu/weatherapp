@@ -28,6 +28,6 @@ I loosely followed design created by Monty Hayton - https://dribbble.com/shots/9
 
 ### Screenshots
 
-<img src="images/home_screen_small.png" alt="Home screen small" width="306" height="578">
+<img src="images/screen_android.png" alt="Home screen android" width="300" height="600">
 
-<img src="images/home_screen_big.png" alt="Home screen big" width="306" height="578">
+<img src="images/screen_ios.png" alt="Home screen iOS" width="300" height="600">
