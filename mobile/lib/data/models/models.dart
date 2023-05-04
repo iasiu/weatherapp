@@ -1,6 +1,6 @@
 // ignore_for_file: invalid_annotation_target
-
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:weatherapp/data/models/utils.dart';
 
 part 'models.freezed.dart';
 part 'models.g.dart';
@@ -10,6 +10,8 @@ class Location with _$Location {
   const factory Location({
     required String name,
     required String country,
+    @JsonKey(name: 'localtime', fromJson: dateTimeFromString)
+        required DateTime localTime,
   }) = _Location;
 
   factory Location.fromJson(Map<String, dynamic> json) =>
@@ -46,13 +48,10 @@ class CurrentWeather with _$CurrentWeather {
       _$CurrentWeatherFromJson(json);
 }
 
-DateTime dateTimefromJson(int epoch) =>
-    DateTime.fromMillisecondsSinceEpoch(epoch * 1000);
-
 @freezed
 class ForecastWeatherHour with _$ForecastWeatherHour {
   const factory ForecastWeatherHour({
-    @JsonKey(name: 'time_epoch', fromJson: dateTimefromJson)
+    @JsonKey(name: 'time', fromJson: dateTimeFromString)
         required DateTime dateTime,
     @JsonKey(name: 'temp_c') required double tempC,
     @JsonKey(name: 'cloud') required double cloudCoverage,
@@ -79,8 +78,7 @@ class ForecastWeatherDay with _$ForecastWeatherDay {
 @freezed
 class ForecastWeatherDayDTO with _$ForecastWeatherDayDTO {
   const factory ForecastWeatherDayDTO({
-    @JsonKey(name: 'date_epoch', fromJson: dateTimefromJson)
-        required DateTime date,
+    @JsonKey(name: 'date', fromJson: dateFromString) required DateTime date,
     required ForecastWeatherDay day,
     @JsonKey(name: 'hour') required List<ForecastWeatherHour> hours,
   }) = _ForecastWeatherDayDTO;

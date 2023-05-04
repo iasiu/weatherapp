@@ -197,7 +197,11 @@ final now = DateTime(2023, 5, 1, 14, 14, 14);
 final later = now.add(const Duration(seconds: 1));
 final someQuery = '${someLocation.name}, ${someLocation.country}';
 
-const someLocation = Location(name: 'location', country: 'country');
+final someLocation = Location(
+  name: 'location',
+  country: 'country',
+  localTime: now,
+);
 
 const someCurrentWeather = CurrentWeather(
   cloudCoverage: 10,

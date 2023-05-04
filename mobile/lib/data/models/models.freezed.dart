@@ -22,6 +22,8 @@ Location _$LocationFromJson(Map<String, dynamic> json) {
 mixin _$Location {
   String get name => throw _privateConstructorUsedError;
   String get country => throw _privateConstructorUsedError;
+  @JsonKey(name: 'localtime', fromJson: dateTimeFromString)
+  DateTime get localTime => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +36,11 @@ abstract class $LocationCopyWith<$Res> {
   factory $LocationCopyWith(Location value, $Res Function(Location) then) =
       _$LocationCopyWithImpl<$Res, Location>;
   @useResult
-  $Res call({String name, String country});
+  $Res call(
+      {String name,
+      String country,
+      @JsonKey(name: 'localtime', fromJson: dateTimeFromString)
+          DateTime localTime});
 }
 
 /// @nodoc
@@ -52,6 +58,7 @@ class _$LocationCopyWithImpl<$Res, $Val extends Location>
   $Res call({
     Object? name = null,
     Object? country = null,
+    Object? localTime = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -62,6 +69,10 @@ class _$LocationCopyWithImpl<$Res, $Val extends Location>
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
               as String,
+      localTime: null == localTime
+          ? _value.localTime
+          : localTime // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ) as $Val);
   }
 }
@@ -73,7 +84,11 @@ abstract class _$$_LocationCopyWith<$Res> implements $LocationCopyWith<$Res> {
       __$$_LocationCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String country});
+  $Res call(
+      {String name,
+      String country,
+      @JsonKey(name: 'localtime', fromJson: dateTimeFromString)
+          DateTime localTime});
 }
 
 /// @nodoc
@@ -89,6 +104,7 @@ class __$$_LocationCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? country = null,
+    Object? localTime = null,
   }) {
     return _then(_$_Location(
       name: null == name
@@ -99,6 +115,10 @@ class __$$_LocationCopyWithImpl<$Res>
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
               as String,
+      localTime: null == localTime
+          ? _value.localTime
+          : localTime // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -106,7 +126,11 @@ class __$$_LocationCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Location implements _Location {
-  const _$_Location({required this.name, required this.country});
+  const _$_Location(
+      {required this.name,
+      required this.country,
+      @JsonKey(name: 'localtime', fromJson: dateTimeFromString)
+          required this.localTime});
 
   factory _$_Location.fromJson(Map<String, dynamic> json) =>
       _$$_LocationFromJson(json);
@@ -115,10 +139,13 @@ class _$_Location implements _Location {
   final String name;
   @override
   final String country;
+  @override
+  @JsonKey(name: 'localtime', fromJson: dateTimeFromString)
+  final DateTime localTime;
 
   @override
   String toString() {
-    return 'Location(name: $name, country: $country)';
+    return 'Location(name: $name, country: $country, localTime: $localTime)';
   }
 
   @override
@@ -127,12 +154,14 @@ class _$_Location implements _Location {
         (other.runtimeType == runtimeType &&
             other is _$_Location &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.country, country) || other.country == country));
+            (identical(other.country, country) || other.country == country) &&
+            (identical(other.localTime, localTime) ||
+                other.localTime == localTime));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, country);
+  int get hashCode => Object.hash(runtimeType, name, country, localTime);
 
   @JsonKey(ignore: true)
   @override
@@ -151,7 +180,9 @@ class _$_Location implements _Location {
 abstract class _Location implements Location {
   const factory _Location(
       {required final String name,
-      required final String country}) = _$_Location;
+      required final String country,
+      @JsonKey(name: 'localtime', fromJson: dateTimeFromString)
+          required final DateTime localTime}) = _$_Location;
 
   factory _Location.fromJson(Map<String, dynamic> json) = _$_Location.fromJson;
 
@@ -159,6 +190,9 @@ abstract class _Location implements Location {
   String get name;
   @override
   String get country;
+  @override
+  @JsonKey(name: 'localtime', fromJson: dateTimeFromString)
+  DateTime get localTime;
   @override
   @JsonKey(ignore: true)
   _$$_LocationCopyWith<_$_Location> get copyWith =>
@@ -591,7 +625,7 @@ ForecastWeatherHour _$ForecastWeatherHourFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ForecastWeatherHour {
-  @JsonKey(name: 'time_epoch', fromJson: dateTimefromJson)
+  @JsonKey(name: 'time', fromJson: dateTimeFromString)
   DateTime get dateTime => throw _privateConstructorUsedError;
   @JsonKey(name: 'temp_c')
   double get tempC => throw _privateConstructorUsedError;
@@ -613,14 +647,10 @@ abstract class $ForecastWeatherHourCopyWith<$Res> {
       _$ForecastWeatherHourCopyWithImpl<$Res, ForecastWeatherHour>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'time_epoch', fromJson: dateTimefromJson)
-          DateTime dateTime,
-      @JsonKey(name: 'temp_c')
-          double tempC,
-      @JsonKey(name: 'cloud')
-          double cloudCoverage,
-      @JsonKey(name: 'wind_mph')
-          double wind});
+      {@JsonKey(name: 'time', fromJson: dateTimeFromString) DateTime dateTime,
+      @JsonKey(name: 'temp_c') double tempC,
+      @JsonKey(name: 'cloud') double cloudCoverage,
+      @JsonKey(name: 'wind_mph') double wind});
 }
 
 /// @nodoc
@@ -671,14 +701,10 @@ abstract class _$$_ForecastWeatherHourCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'time_epoch', fromJson: dateTimefromJson)
-          DateTime dateTime,
-      @JsonKey(name: 'temp_c')
-          double tempC,
-      @JsonKey(name: 'cloud')
-          double cloudCoverage,
-      @JsonKey(name: 'wind_mph')
-          double wind});
+      {@JsonKey(name: 'time', fromJson: dateTimeFromString) DateTime dateTime,
+      @JsonKey(name: 'temp_c') double tempC,
+      @JsonKey(name: 'cloud') double cloudCoverage,
+      @JsonKey(name: 'wind_mph') double wind});
 }
 
 /// @nodoc
@@ -722,7 +748,7 @@ class __$$_ForecastWeatherHourCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ForecastWeatherHour implements _ForecastWeatherHour {
   const _$_ForecastWeatherHour(
-      {@JsonKey(name: 'time_epoch', fromJson: dateTimefromJson)
+      {@JsonKey(name: 'time', fromJson: dateTimeFromString)
           required this.dateTime,
       @JsonKey(name: 'temp_c')
           required this.tempC,
@@ -735,7 +761,7 @@ class _$_ForecastWeatherHour implements _ForecastWeatherHour {
       _$$_ForecastWeatherHourFromJson(json);
 
   @override
-  @JsonKey(name: 'time_epoch', fromJson: dateTimefromJson)
+  @JsonKey(name: 'time', fromJson: dateTimeFromString)
   final DateTime dateTime;
   @override
   @JsonKey(name: 'temp_c')
@@ -787,7 +813,7 @@ class _$_ForecastWeatherHour implements _ForecastWeatherHour {
 
 abstract class _ForecastWeatherHour implements ForecastWeatherHour {
   const factory _ForecastWeatherHour(
-      {@JsonKey(name: 'time_epoch', fromJson: dateTimefromJson)
+      {@JsonKey(name: 'time', fromJson: dateTimeFromString)
           required final DateTime dateTime,
       @JsonKey(name: 'temp_c')
           required final double tempC,
@@ -800,7 +826,7 @@ abstract class _ForecastWeatherHour implements ForecastWeatherHour {
       _$_ForecastWeatherHour.fromJson;
 
   @override
-  @JsonKey(name: 'time_epoch', fromJson: dateTimefromJson)
+  @JsonKey(name: 'time', fromJson: dateTimeFromString)
   DateTime get dateTime;
   @override
   @JsonKey(name: 'temp_c')
@@ -1043,7 +1069,7 @@ ForecastWeatherDayDTO _$ForecastWeatherDayDTOFromJson(
 
 /// @nodoc
 mixin _$ForecastWeatherDayDTO {
-  @JsonKey(name: 'date_epoch', fromJson: dateTimefromJson)
+  @JsonKey(name: 'date', fromJson: dateFromString)
   DateTime get date => throw _privateConstructorUsedError;
   ForecastWeatherDay get day => throw _privateConstructorUsedError;
   @JsonKey(name: 'hour')
@@ -1062,7 +1088,7 @@ abstract class $ForecastWeatherDayDTOCopyWith<$Res> {
       _$ForecastWeatherDayDTOCopyWithImpl<$Res, ForecastWeatherDayDTO>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'date_epoch', fromJson: dateTimefromJson) DateTime date,
+      {@JsonKey(name: 'date', fromJson: dateFromString) DateTime date,
       ForecastWeatherDay day,
       @JsonKey(name: 'hour') List<ForecastWeatherHour> hours});
 
@@ -1121,7 +1147,7 @@ abstract class _$$_ForecastWeatherDayDTOCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'date_epoch', fromJson: dateTimefromJson) DateTime date,
+      {@JsonKey(name: 'date', fromJson: dateFromString) DateTime date,
       ForecastWeatherDay day,
       @JsonKey(name: 'hour') List<ForecastWeatherHour> hours});
 
@@ -1165,18 +1191,16 @@ class __$$_ForecastWeatherDayDTOCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ForecastWeatherDayDTO implements _ForecastWeatherDayDTO {
   const _$_ForecastWeatherDayDTO(
-      {@JsonKey(name: 'date_epoch', fromJson: dateTimefromJson)
-          required this.date,
+      {@JsonKey(name: 'date', fromJson: dateFromString) required this.date,
       required this.day,
-      @JsonKey(name: 'hour')
-          required final List<ForecastWeatherHour> hours})
+      @JsonKey(name: 'hour') required final List<ForecastWeatherHour> hours})
       : _hours = hours;
 
   factory _$_ForecastWeatherDayDTO.fromJson(Map<String, dynamic> json) =>
       _$$_ForecastWeatherDayDTOFromJson(json);
 
   @override
-  @JsonKey(name: 'date_epoch', fromJson: dateTimefromJson)
+  @JsonKey(name: 'date', fromJson: dateFromString)
   final DateTime date;
   @override
   final ForecastWeatherDay day;
@@ -1226,7 +1250,7 @@ class _$_ForecastWeatherDayDTO implements _ForecastWeatherDayDTO {
 
 abstract class _ForecastWeatherDayDTO implements ForecastWeatherDayDTO {
   const factory _ForecastWeatherDayDTO(
-          {@JsonKey(name: 'date_epoch', fromJson: dateTimefromJson)
+          {@JsonKey(name: 'date', fromJson: dateFromString)
               required final DateTime date,
           required final ForecastWeatherDay day,
           @JsonKey(name: 'hour')
@@ -1237,7 +1261,7 @@ abstract class _ForecastWeatherDayDTO implements ForecastWeatherDayDTO {
       _$_ForecastWeatherDayDTO.fromJson;
 
   @override
-  @JsonKey(name: 'date_epoch', fromJson: dateTimefromJson)
+  @JsonKey(name: 'date', fromJson: dateFromString)
   DateTime get date;
   @override
   ForecastWeatherDay get day;
