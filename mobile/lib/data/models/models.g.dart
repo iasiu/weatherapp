@@ -9,12 +9,14 @@ part of 'models.dart';
 _$_Location _$$_LocationFromJson(Map<String, dynamic> json) => _$_Location(
       name: json['name'] as String,
       country: json['country'] as String,
+      localTime: dateTimeFromString(json['localtime'] as String),
     );
 
 Map<String, dynamic> _$$_LocationToJson(_$_Location instance) =>
     <String, dynamic>{
       'name': instance.name,
       'country': instance.country,
+      'localtime': instance.localTime.toIso8601String(),
     };
 
 _$_WeatherCondition _$$_WeatherConditionFromJson(Map<String, dynamic> json) =>
@@ -53,7 +55,7 @@ Map<String, dynamic> _$$_CurrentWeatherToJson(_$_CurrentWeather instance) =>
 _$_ForecastWeatherHour _$$_ForecastWeatherHourFromJson(
         Map<String, dynamic> json) =>
     _$_ForecastWeatherHour(
-      dateTime: dateTimefromJson(json['time_epoch'] as int),
+      dateTime: dateTimeFromString(json['time'] as String),
       tempC: (json['temp_c'] as num).toDouble(),
       cloudCoverage: (json['cloud'] as num).toDouble(),
       wind: (json['wind_mph'] as num).toDouble(),
@@ -62,7 +64,7 @@ _$_ForecastWeatherHour _$$_ForecastWeatherHourFromJson(
 Map<String, dynamic> _$$_ForecastWeatherHourToJson(
         _$_ForecastWeatherHour instance) =>
     <String, dynamic>{
-      'time_epoch': instance.dateTime.toIso8601String(),
+      'time': instance.dateTime.toIso8601String(),
       'temp_c': instance.tempC,
       'cloud': instance.cloudCoverage,
       'wind_mph': instance.wind,
@@ -89,7 +91,7 @@ Map<String, dynamic> _$$_ForecastWeatherDayToJson(
 _$_ForecastWeatherDayDTO _$$_ForecastWeatherDayDTOFromJson(
         Map<String, dynamic> json) =>
     _$_ForecastWeatherDayDTO(
-      date: dateTimefromJson(json['date_epoch'] as int),
+      date: dateFromString(json['date'] as String),
       day: ForecastWeatherDay.fromJson(json['day'] as Map<String, dynamic>),
       hours: (json['hour'] as List<dynamic>)
           .map((e) => ForecastWeatherHour.fromJson(e as Map<String, dynamic>))
@@ -99,7 +101,7 @@ _$_ForecastWeatherDayDTO _$$_ForecastWeatherDayDTOFromJson(
 Map<String, dynamic> _$$_ForecastWeatherDayDTOToJson(
         _$_ForecastWeatherDayDTO instance) =>
     <String, dynamic>{
-      'date_epoch': instance.date.toIso8601String(),
+      'date': instance.date.toIso8601String(),
       'day': instance.day,
       'hour': instance.hours,
     };

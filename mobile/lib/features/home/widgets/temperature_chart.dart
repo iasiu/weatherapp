@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:collection/collection.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:weatherapp/data/models/models.dart';
 import 'package:weatherapp/extensions/extensions.dart';
 import 'package:weatherapp/widgets/widgets.dart';
@@ -14,14 +15,12 @@ class TemperatureChart extends StatelessWidget {
     required this.maxY,
     required this.hours,
     required this.color,
-    this.animate = true,
   });
 
   final double minY;
   final double maxY;
   final List<ForecastWeatherHour> hours;
   final Color color;
-  final bool animate;
 
   double get horizontalInterval => max(((maxY - minY) / 4).floorToDouble(), 2);
 
@@ -53,9 +52,12 @@ class TemperatureChart extends StatelessWidget {
 
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
     if (0 <= value && value <= 11) {
+      final hour = hours[value.toInt()].dateTime.hour;
+
       return AppText(
-        hours[value.toInt()].dateTime.hour.toString(),
+        NumberFormat('00').format(hour),
         style: const TextStyle(
+          fontSize: 14,
           fontWeight: FontWeight.w500,
         ),
       );

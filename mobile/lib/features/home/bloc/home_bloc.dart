@@ -76,9 +76,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   Future<void> _load(Emitter<HomeState> emit, {required String query}) async {
     final weather = await _repository.getForecast(query: query);
 
-    final now = _dateTime.now;
     final hours = _getNext12Hours(
-      now: now,
+      localTime: weather.location.localTime,
       days: weather.forecast.forecastDays,
     );
 
@@ -89,13 +88,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         forecastToday: weather.forecast.forecastDays.first,
         forecastTomorrow: weather.forecast.forecastDays.last,
         hours: hours,
-        updated: now,
+        updated: _dateTime.now,
       ),
     );
   }
 
   List<ForecastWeatherHour> _getNext12Hours({
-    required DateTime now,
+    required DateTime localTime,
     required List<ForecastWeatherDayDTO> days,
   }) =>
       days
@@ -104,8 +103,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           )
           .where(
             (e) =>
-                e.dateTime.difference(now) < const Duration(hours: 12) &&
-                e.dateTime.difference(now) > Duration.zero,
+                e.dateTime.difference(localTime) < const Duration(hours: 12) &&
+                e.dateTime.difference(localTime) > Duration.zero,
           )
           .toList();
 }
